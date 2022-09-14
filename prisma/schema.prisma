@@ -64,6 +64,7 @@ model TeachersDisciplines {
   Teacher       Teacher    @relation(fields: [teacherId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   Discipline    Discipline @relation(fields: [disciplineId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
+  @@unique([teacherId,disciplineId])
   @@map("teachersDisciplines")
 }
 
