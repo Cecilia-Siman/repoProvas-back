@@ -3,8 +3,12 @@ import { insertTest, findTeachersDisciplinesId } from "../Repositories/createTes
 
 export async function newTest(testData:any) {
     try{
-        const teacherDisciplineId = await findTeachersDisciplinesId(testData.teacherId,testData.disciplineId); 
-        const {name, pdfUrl, categoryId } = testData;
+        let {teacherId, disciplineId} = testData;
+        teacherId = Number(teacherId);
+        disciplineId = Number(disciplineId);
+        const teacherDisciplineId = await findTeachersDisciplinesId(teacherId,disciplineId); 
+        let {name, pdfUrl, categoryId } = testData;
+        categoryId = Number(categoryId);
         const newTest = {name, pdfUrl, categoryId, teacherDisciplineId};
         await insertTest(newTest);
     }

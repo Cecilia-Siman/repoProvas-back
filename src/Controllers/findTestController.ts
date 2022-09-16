@@ -3,23 +3,11 @@ import { teacherTests } from "../Services/findTestService";
 
 
 export async function findTeacherTests(req:Request, res: Response) {
-    try{
-        const testList = await teacherTests();
-        res.send(testList);
-        
-    }
-    catch(error){
-        console.log(error);
-    }
+    const testList = await teacherTests();
+    res.send(testList);
     
 }
 
 export async function findDisciplineTests(req:Request, res: Response) {
-    try{
-        
-    }
-    catch(error){
-        console.log(error);
-    }
     
 }

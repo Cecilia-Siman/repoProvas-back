@@ -6,10 +6,10 @@ import { findUser } from "../Repositories/usersRepository";
 export async function userLogin(user:Omit<User,"id">) {
     const userData = await findUser(user.email);
     if (!userData){
-        console.log('deu ruim, usuário não registrado');
+        throw{code: 'Unauthorized', message: 'Email not registered'};
     }
     if (!bcrypt.compareSync(user.password,userData.password)){
-        console.log('senha errada');
+        throw{code: 'Unauthorized', message: 'Password does not match'};
     }
     const token = createToken(userData.id);
     return token;    

@@ -1,4 +1,8 @@
-import { testsByDiscipline, testsByTeachers, teachersAndCategories } from "../Repositories/findTestsRepository";
+import { 
+    testsByDiscipline, 
+    testsByTeachers, 
+    teachersAndCategories 
+} from "../Repositories/findTestsRepository";
 
 export async function teacherTests() {
     const {teachers,categories} = await teachersAndCategories();
