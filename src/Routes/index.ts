@@ -7,6 +7,6 @@ const router = Router();
 
 router.use('/', userRouter);
 router.use('/', createTestRouter);
-router.use('/', findTestsRouter);
+router.use('/findtests', findTestsRouter);
 
 export default router;

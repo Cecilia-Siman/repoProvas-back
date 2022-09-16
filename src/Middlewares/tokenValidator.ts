@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { findUser } from "../Repositories/usersRepository";
+import { findUserById } from "../Repositories/usersRepository";
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -18,7 +18,7 @@ export async function validateToken(req:Request,res:Response,next:NextFunction) 
     try {
         const dados = jwt.verify(token, secretkey);
         
-        const userInfo = await findUser(dados.id)
+        const userInfo = await findUserById(dados.id)
     
         if (!userInfo) {
             return res.sendStatus(404);
@@ -27,6 +27,8 @@ export async function validateToken(req:Request,res:Response,next:NextFunction) 
 
         next();
     }   catch (error) {
+
+        console.log(error);
         res.sendStatus(401);
         
     }

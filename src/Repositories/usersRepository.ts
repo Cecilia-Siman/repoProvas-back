@@ -8,6 +8,13 @@ export async function findUser(email: string) {
     return userInfo;
 }
 
+export async function findUserById(id:number) {
+    const userInfo = await prisma.user.findUnique({
+        where: {id}
+    })
+    return userInfo;
+}
+
 export async function createUser(userInfo: Omit<User, "id">) {
     await prisma.user.create({
         data: userInfo
