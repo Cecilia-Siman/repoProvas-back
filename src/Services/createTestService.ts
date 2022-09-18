@@ -1,18 +1,18 @@
 import { Test } from "@prisma/client";
 import { insertTest, findTeachersDisciplinesId } from "../Repositories/createTestRepository";
 
-export async function newTest(testData:any) {
-    try{
-        let {teacherId, disciplineId} = testData;
+export async function newTest(testData: any) {
+    try {
+        let { teacherId, disciplineId } = testData;
         teacherId = Number(teacherId);
         disciplineId = Number(disciplineId);
-        const teacherDisciplineId = await findTeachersDisciplinesId(teacherId,disciplineId); 
-        let {name, pdfUrl, categoryId } = testData;
+        const teacherDisciplineId = await findTeachersDisciplinesId(teacherId, disciplineId);
+        let { name, pdfUrl, categoryId } = testData;
         categoryId = Number(categoryId);
-        const newTest = {name, pdfUrl, categoryId, teacherDisciplineId};
+        const newTest = { name, pdfUrl, categoryId, teacherDisciplineId };
         await insertTest(newTest);
     }
-    catch(error){
+    catch (error) {
         console.log(error);
     }
 }
