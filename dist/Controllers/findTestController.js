@@ -46,7 +46,7 @@ function findTeacherTests(req, res) {
                 case 0: return [4 /*yield*/, (0, findTestService_1.teacherTests)()];
                 case 1:
                     testList = _a.sent();
-                    res.send(testList);
+                    res.send(testList).status(200);
                     return [2 /*return*/];
             }
         });
@@ -55,8 +55,15 @@ function findTeacherTests(req, res) {
 exports.findTeacherTests = findTeacherTests;
 function findDisciplineTests(req, res) {
     return __awaiter(this, void 0, void 0, function () {
+        var testList;
         return __generator(this, function (_a) {
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0, findTestService_1.disciplineTests)()];
+                case 1:
+                    testList = _a.sent();
+                    res.send(testList).status(200);
+                    return [2 /*return*/];
+            }
         });
     });
 }

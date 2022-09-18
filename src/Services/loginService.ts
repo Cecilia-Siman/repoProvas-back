@@ -6,7 +6,7 @@ import { findUser } from "../Repositories/usersRepository";
 export async function userLogin(user:Omit<User,"id">) {
     const userData = await findUser(user.email);
     if (!userData){
-        throw{code: 'Unauthorized', message: 'Email not registered'};
+        throw{code: 'Not Valid', message: 'Email not registered'};
     }
     if (!bcrypt.compareSync(user.password,userData.password)){
         throw{code: 'Unauthorized', message: 'Password does not match'};

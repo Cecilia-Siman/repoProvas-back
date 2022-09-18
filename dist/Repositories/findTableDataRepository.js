@@ -39,61 +39,61 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 exports.__esModule = true;
-exports.testsByTeachers = exports.testsByDiscipline = void 0;
+exports.findTerms = exports.findDisciplines = exports.findCategories = exports.findTeachers = void 0;
 var postgres_1 = __importDefault(require("../Config/postgres"));
-function testsByDiscipline(term, discipline, category) {
+function findTeachers() {
     return __awaiter(this, void 0, void 0, function () {
-        var testList;
+        var teachers;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, postgres_1["default"].query('select teachers.name as teacher, tests."pdfUrl" as url, tests.name as test, tests.id as id, categories.name as category, disciplines.name as disciplines from teachers join "teachersDisciplines" on teachers.id = "teachersDisciplines"."teacherId" join disciplines on "teachersDisciplines"."disciplineId" = disciplines.id join terms on disciplines."termId" = terms.id join tests on "teachersDisciplines".id=tests."teacherDisciplineId" join categories on tests."categoryId"=categories.id where terms.number=$1 and disciplines.name=$2 and categories.name=$3;', [term, discipline, category])];
+                case 0: return [4 /*yield*/, postgres_1["default"].query('select name from teachers')];
                 case 1:
-                    testList = (_a.sent()).rows;
-                    return [2 /*return*/, testList];
+                    teachers = (_a.sent()).rows;
+                    return [2 /*return*/, { teachers: teachers }];
             }
         });
     });
 }
-exports.testsByDiscipline = testsByDiscipline;
-function testsByTeachers(teacher, category) {
+exports.findTeachers = findTeachers;
+function findCategories() {
     return __awaiter(this, void 0, void 0, function () {
-        var testList;
+        var categories;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, postgres_1["default"].query('select teachers.name as teacher, tests."pdfUrl" as url, tests.name as test, tests.id as id, categories.name as category, disciplines.name as disciplines from teachers join "teachersDisciplines" on teachers.id = "teachersDisciplines"."teacherId" join disciplines on "teachersDisciplines"."disciplineId" = disciplines.id join tests on "teachersDisciplines".id=tests."teacherDisciplineId" join categories on tests."categoryId"=categories.id where teachers.name=$1 and categories.name=$2;', [teacher, category])];
+                case 0: return [4 /*yield*/, postgres_1["default"].query('select name from categories')];
                 case 1:
-                    testList = (_a.sent()).rows;
-                    return [2 /*return*/, testList];
+                    categories = (_a.sent()).rows;
+                    return [2 /*return*/, { categories: categories }];
             }
         });
     });
 }
-exports.testsByTeachers = testsByTeachers;
-/*  TENTATIVA DE FAZER PELO PRISMA
-export async function testsByTeachers() {
-    const teacherTests = await prisma.test.findMany({
-        select:{
-            id:true,
-            name:true,
-            pdfUrl:true,
-            TeachersDisciplines:{
-                select: {
-                    
-                    Teacher:{
-                        select:{
-                            name:true
-                        }
-                    }
-                }
-            },
-            Category:{
-                select:{
-                    name:true
-                }
+exports.findCategories = findCategories;
+function findDisciplines() {
+    return __awaiter(this, void 0, void 0, function () {
+        var disciplines;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, postgres_1["default"].query('select name from disciplines')];
+                case 1:
+                    disciplines = (_a.sent()).rows;
+                    return [2 /*return*/, { disciplines: disciplines }];
             }
-        }
+        });
     });
-    console.log(teacherTests);
-    return teacherTests;
-    
-}*/ 
+}
+exports.findDisciplines = findDisciplines;
+function findTerms() {
+    return __awaiter(this, void 0, void 0, function () {
+        var terms;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, postgres_1["default"].query('select number from terms')];
+                case 1:
+                    terms = (_a.sent()).rows;
+                    return [2 /*return*/, { terms: terms }];
+            }
+        });
+    });
+}
+exports.findTerms = findTerms;

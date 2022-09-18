@@ -30,7 +30,10 @@ export async function disciplineTests() {
                 termObj.testsByDiscipline.push(disciplineObj);
             }
         }
-        listReturn.push(termObj);
+        if (termObj.testsByDiscipline.length !== 0) {
+            listReturn.push(termObj);
+        }
+
     }
     return listReturn;
 }
@@ -49,7 +52,9 @@ export async function teacherTests() {
             }
 
         }
-        listReturn.push(teacherObj);
+        if (teacherObj.testsByCategory.length !== 0) {
+            listReturn.push(teacherObj);
+        }
     }
 
     return listReturn;

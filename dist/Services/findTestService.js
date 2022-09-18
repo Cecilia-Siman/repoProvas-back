@@ -36,46 +36,117 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.teacherTests = void 0;
+exports.teacherTests = exports.disciplineTests = void 0;
 var findTestsRepository_1 = require("../Repositories/findTestsRepository");
-function teacherTests() {
+var findTableDataRepository_1 = require("../Repositories/findTableDataRepository");
+function disciplineTests() {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, teachers, categories, listReturn, _i, teachers_1, i, teacherObj, _b, categories_1, j, listTests, categoryObj;
+        var terms, disciplines, categories, listReturn, _i, terms_1, i, termObj, _a, disciplines_1, j, disciplineObj, _b, categories_1, k, listTests, categoryObj;
         return __generator(this, function (_c) {
             switch (_c.label) {
-                case 0: return [4 /*yield*/, (0, findTestsRepository_1.teachersAndCategories)()];
+                case 0: return [4 /*yield*/, (0, findTableDataRepository_1.findTerms)()];
                 case 1:
-                    _a = _c.sent(), teachers = _a.teachers, categories = _a.categories;
+                    terms = (_c.sent()).terms;
+                    return [4 /*yield*/, (0, findTableDataRepository_1.findDisciplines)()];
+                case 2:
+                    disciplines = (_c.sent()).disciplines;
+                    return [4 /*yield*/, (0, findTableDataRepository_1.findCategories)()];
+                case 3:
+                    categories = (_c.sent()).categories;
+                    listReturn = [];
+                    _i = 0, terms_1 = terms;
+                    _c.label = 4;
+                case 4:
+                    if (!(_i < terms_1.length)) return [3 /*break*/, 13];
+                    i = terms_1[_i];
+                    termObj = { term: i.number, testsByDiscipline: [] };
+                    _a = 0, disciplines_1 = disciplines;
+                    _c.label = 5;
+                case 5:
+                    if (!(_a < disciplines_1.length)) return [3 /*break*/, 11];
+                    j = disciplines_1[_a];
+                    disciplineObj = { discipline: j.name, testsByCategory: [] };
+                    _b = 0, categories_1 = categories;
+                    _c.label = 6;
+                case 6:
+                    if (!(_b < categories_1.length)) return [3 /*break*/, 9];
+                    k = categories_1[_b];
+                    return [4 /*yield*/, (0, findTestsRepository_1.testsByDiscipline)(i.number, j.name, k.name)];
+                case 7:
+                    listTests = _c.sent();
+                    if (listTests.length !== 0) {
+                        categoryObj = { category: k.name, tests: listTests };
+                        disciplineObj.testsByCategory.push(categoryObj);
+                    }
+                    _c.label = 8;
+                case 8:
+                    _b++;
+                    return [3 /*break*/, 6];
+                case 9:
+                    if (disciplineObj.testsByCategory.length !== 0) {
+                        termObj.testsByDiscipline.push(disciplineObj);
+                    }
+                    _c.label = 10;
+                case 10:
+                    _a++;
+                    return [3 /*break*/, 5];
+                case 11:
+                    if (termObj.testsByDiscipline.length !== 0) {
+                        listReturn.push(termObj);
+                    }
+                    _c.label = 12;
+                case 12:
+                    _i++;
+                    return [3 /*break*/, 4];
+                case 13: return [2 /*return*/, listReturn];
+            }
+        });
+    });
+}
+exports.disciplineTests = disciplineTests;
+function teacherTests() {
+    return __awaiter(this, void 0, void 0, function () {
+        var teachers, categories, listReturn, _i, teachers_1, i, teacherObj, _a, categories_2, j, listTests, categoryObj;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0: return [4 /*yield*/, (0, findTableDataRepository_1.findTeachers)()];
+                case 1:
+                    teachers = (_b.sent()).teachers;
+                    return [4 /*yield*/, (0, findTableDataRepository_1.findCategories)()];
+                case 2:
+                    categories = (_b.sent()).categories;
                     listReturn = [];
                     _i = 0, teachers_1 = teachers;
-                    _c.label = 2;
-                case 2:
-                    if (!(_i < teachers_1.length)) return [3 /*break*/, 8];
+                    _b.label = 3;
+                case 3:
+                    if (!(_i < teachers_1.length)) return [3 /*break*/, 9];
                     i = teachers_1[_i];
                     teacherObj = { teacher: i.name, testsByCategory: [] };
-                    _b = 0, categories_1 = categories;
-                    _c.label = 3;
-                case 3:
-                    if (!(_b < categories_1.length)) return [3 /*break*/, 6];
-                    j = categories_1[_b];
-                    return [4 /*yield*/, (0, findTestsRepository_1.testsByTeachers)(i.name, j.name)];
+                    _a = 0, categories_2 = categories;
+                    _b.label = 4;
                 case 4:
-                    listTests = _c.sent();
+                    if (!(_a < categories_2.length)) return [3 /*break*/, 7];
+                    j = categories_2[_a];
+                    return [4 /*yield*/, (0, findTestsRepository_1.testsByTeachers)(i.name, j.name)];
+                case 5:
+                    listTests = _b.sent();
                     if (listTests.length !== 0) {
                         categoryObj = { category: j.name, tests: listTests };
                         teacherObj.testsByCategory.push(categoryObj);
                     }
-                    _c.label = 5;
-                case 5:
-                    _b++;
-                    return [3 /*break*/, 3];
+                    _b.label = 6;
                 case 6:
-                    listReturn.push(teacherObj);
-                    _c.label = 7;
+                    _a++;
+                    return [3 /*break*/, 4];
                 case 7:
+                    if (teacherObj.testsByCategory.length !== 0) {
+                        listReturn.push(teacherObj);
+                    }
+                    _b.label = 8;
+                case 8:
                     _i++;
-                    return [3 /*break*/, 2];
-                case 8: return [2 /*return*/, listReturn];
+                    return [3 /*break*/, 3];
+                case 9: return [2 /*return*/, listReturn];
             }
         });
     });
