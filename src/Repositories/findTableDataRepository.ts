@@ -21,3 +21,10 @@ export async function findDisciplines() {
     )
     return { disciplines };
 }
+
+export async function findTerms() {
+    const { rows: terms } = await connection.query(
+        'select number from terms'
+    )
+    return { terms };
+}
