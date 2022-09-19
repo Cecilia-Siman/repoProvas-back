@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node dist/src/index.js",
     "test": "npx dotenv-cli -e .env.test prisma migrate dev && jest -i",
     "dev": "npx nodemon src/index.ts"
   },
