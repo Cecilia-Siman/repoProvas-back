@@ -6,7 +6,7 @@
 
 ##  :clipboard: Descrição
 
-Uma Api para armazenar e compartilhar provas. 
+Uma API para armazenar e compartilhar provas. 
 
 ***
 
