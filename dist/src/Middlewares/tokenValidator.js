@@ -64,7 +64,6 @@ function validateToken(req, res, next) {
                 case 2:
                     userInfo = _a.sent();
                     if (!userInfo) {
-                        //return res.sendStatus(404);
                         throw { code: 'Unauthorized', message: 'Missing token' };
                     }
                     res.locals.userId = userInfo.id;

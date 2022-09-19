@@ -68,7 +68,6 @@ function createToken(id) {
     var dados = { id: id };
     var chaveSecreta = process.env.JWT_SECRET;
     var token = jsonwebtoken_1["default"].sign(dados, chaveSecreta);
-    console.log(token);
     return token;
 }
 exports.createToken = createToken;
