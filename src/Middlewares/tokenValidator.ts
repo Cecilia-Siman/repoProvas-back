@@ -21,7 +21,6 @@ export async function validateToken(req: Request, res: Response, next: NextFunct
         const userInfo = await findUserById(dados.id)
 
         if (!userInfo) {
-            //return res.sendStatus(404);
             throw { code: 'Unauthorized', message: 'Missing token' };
         }
         res.locals.userId = userInfo.id;

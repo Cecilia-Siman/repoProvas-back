@@ -19,6 +19,5 @@ export function createToken(id: number): string {
     const dados = { id };
     const chaveSecreta = process.env.JWT_SECRET;
     const token = jwt.sign(dados, chaveSecreta);
-    console.log(token);
     return token;
 }
