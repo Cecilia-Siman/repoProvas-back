@@ -75,7 +75,7 @@ Certifique-se que voce tem a ultima versão estável do [Node.js](https://nodejs
 Primeiro, faça o clone desse repositório na sua maquina:
 
 ```
-git clone https://github.com/Cecilia-Siman/projeto20-back.git
+git clone https://github.com/Cecilia-Siman/repoProvas-back.git
 ```
 
 Depois, dentro da pasta, rode o seguinte comando para instalar as dependencias.
